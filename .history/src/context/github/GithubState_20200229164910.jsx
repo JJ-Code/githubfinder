@@ -17,13 +17,8 @@ let gitHubClientId;
 let gitHubClientSecert;
 
 
-if (process.env.NODE.ENV !== 'production') {
-  gitHubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
-  gitHubClientSecert = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-} else{
-  gitHubClientId = process.env.GITHUB_CLIENT_ID;
-  gitHubClientSecert = process.env.GITHUB_CLIENT_SECRET;
-
+if(process.env.node_env !==='production'){
+  
 }
 
 const GithubState = props => {
@@ -39,7 +34,7 @@ const GithubState = props => {
   //search github users
   const searchUsers = async text => {
     setLoading()
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${gitHubClientId}&client_secert=${gitHubClientSecert}`)
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secert=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
     //console.log(res);
     dispatch({
       type: SEARCH_USERS,
@@ -50,7 +45,7 @@ const GithubState = props => {
   //Get one user
   const getUser = async (username) => {
     setLoading();
-    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${gitHubClientId}&client_secert=${gitHubClientSecert}`)
+    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secert=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
     //console.log(res);
     dispatch({
       type: GET_USER,
@@ -72,7 +67,7 @@ const GithubState = props => {
 
 
   //clear users from state
-  const clearUsers = () => dispatch({ type: CLEAR_USERS })
+  const clearUsers = () => dispatch({type: CLEAR_USERS})
 
   //Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING })

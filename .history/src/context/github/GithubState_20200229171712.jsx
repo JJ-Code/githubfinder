@@ -17,7 +17,7 @@ let gitHubClientId;
 let gitHubClientSecert;
 
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODEENV !== 'production') {
   gitHubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   gitHubClientSecert = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else{
